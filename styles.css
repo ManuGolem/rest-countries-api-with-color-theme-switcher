@@ -1,64 +1,88 @@
 @import url("https://fonts.googleapis.com/css2?family=Barlow+Semi+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Figtree:ital,wght@0,300..900;1,300..900&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Outfit:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Rubik:ital,wght@0,300..900;1,300..900&family=Young+Serif&display=swap");
+
 :root {
-	--darkModeElements: hsl(209, 23%, 22%);
-	--DarkModeBg: hsl(207, 26%, 17%);
-	--LightModeText: hsl(200, 15%, 8%);
-	--LightModeInput: hsl(0, 0%, 52%);
-	--LightModeBg: hsl(0, 0%, 98%);
-	--white: hsl(0, 0%, 100%);
+    --darkModeElements: hsl(209, 23%, 22%);
+    --DarkModeBg: hsl(207, 26%, 17%);
+    --LightModeText: hsl(200, 15%, 8%);
+    --LightModeInput: hsl(0, 0%, 52%);
+    --LightModeBg: hsl(0, 0%, 98%);
+    --white: hsl(0, 0%, 100%);
 }
+
 * {
-	box-sizing: border-box;
-	padding: 0;
-	margin: 0;
-	font-family: "Nunito Sans", serif;
-	font-optical-sizing: auto;
-	font-style: normal;
-	font-variation-settings: "wdth" 100, "YTLC" 500;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: "Nunito Sans", serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100,
+        "YTLC" 500;
 }
+
 body {
-	background-color: var(--LightModeBg);
-	display: flex;
-	flex-direction: column;
-	height: 100vh;
-	color: var(--LightModeText);
+    background-color: var(--LightModeBg);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    color: var(--LightModeText);
 }
+
 header {
-	display: flex;
-	justify-content: space-between;
-	padding-inline: 2rem;
-	button {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		gap: 8px;
-		background-color: transparent;
-		border: none;
-		color: var(--LightModeText);
-		&:hover {
-			cursor: pointer;
-		}
-	}
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 2rem;
+    background-color: var(--white);
+    box-shadow: 0px 0px 5px var(--LightModeInput);
+
+    button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        background-color: transparent;
+        border: none;
+        color: var(--LightModeText);
+        transition: all 0.1s ease-in;
+
+        &:hover {
+            cursor: pointer;
+            scale: 1.2;
+        }
+    }
+
+    padding: 1rem;
+    padding-inline: 4rem;
 }
+
 main {
-	flex-grow: 1;
+    flex-grow: 1;
 }
+
 footer {
-	text-align: center;
-	a {
-		text-decoration: none;
-		&:any-link {
-			color: #09f;
-			text-decoration: none;
-		}
-	}
+    text-align: center;
+
+    a {
+        text-decoration: none;
+
+        &:any-link {
+            color: #09f;
+            text-decoration: none;
+        }
+    }
 }
+
 .darkMode {
-	background-color: var(--DarkModeBg);
-	color: var(--white);
-	header {
-		button {
-			color: var(--white);
-		}
-	}
+    background-color: var(--DarkModeBg);
+    color: var(--white);
+
+    header {
+        background-color: var(--darkModeElements);
+        box-shadow: none;
+
+        button {
+            color: var(--white);
+        }
+    }
 }
