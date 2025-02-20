@@ -58,6 +58,7 @@ header {
 
 main {
     flex-grow: 1;
+    height: 100vh;
 }
 
 footer {
@@ -85,4 +86,25 @@ footer {
             color: var(--white);
         }
     }
+}
+
+.container-banderas {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    max-height: 100vh;
+    overflow: auto;
+    gap: 5rem;
+    padding-inline: 5rem;
+    padding-block: 2rem;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.card {
+    background-color: red;
+    height: 21rem;
+    width: 20rem;
 }
