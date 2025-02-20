@@ -1,9 +1,10 @@
 const toggleDark = document.querySelector("#toggle-dark");
 const textoBoton = toggleDark.querySelector("span");
 const body = document.querySelector("body");
-
+const container = document.querySelector(".container-banderas");
 document.addEventListener("DOMContentLoaded", () => {
     actualizarMode();
+    traerDatos();
     toggleDark.addEventListener("click", () => {
         body.classList.toggle("darkMode");
         if (body.classList.contains("darkMode")) {
@@ -13,6 +14,18 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+async function traerDatos() {
+    const datos = await fetch("data.json").then((res) => res.json());
+    console.log(datos);
+    datos.forEach((pais) => {
+        const div = document.createElement("div");
+        const bandera = document.createElement("img");
+        bandera.src = pais.flag;
+        div.classList.add("card");
+        div.appendChild(bandera);
+        container.appendChild(div);
+    });
+}
 function actualizarMode() {
     const darkMode = window.matchMedia("(prefers-color-scheme:dark)").matches;
     if (darkMode) {
