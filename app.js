@@ -20,9 +20,21 @@ async function traerDatos() {
     datos.forEach((pais) => {
         const div = document.createElement("div");
         const bandera = document.createElement("img");
-        bandera.src = pais.flag;
+        const nombre = document.createElement("h1");
+        const poblacion = document.createElement("p");
+        const region = document.createElement("p");
+        const capital = document.createElement("p");
+        nombre.textContent = pais.name;
+        poblacion.textContent = pais.population;
+        region.textContent = pais.region;
+        capital.textContent = pais.capital;
+        bandera.src = pais.flags.png;
         div.classList.add("card");
         div.appendChild(bandera);
+        div.appendChild(nombre);
+        div.appendChild(poblacion);
+        div.appendChild(region);
+        div.appendChild(capital);
         container.appendChild(div);
     });
 }
