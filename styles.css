@@ -112,6 +112,11 @@ footer {
         border-top-left-radius: 8px;
         width: 100%;
         height: 50%;
+        object-fit: cover;
+
+        &:hover {
+            cursor: pointer;
+        }
     }
 
     p,
