@@ -24,17 +24,21 @@ async function traerDatos() {
         const poblacion = document.createElement("p");
         const region = document.createElement("p");
         const capital = document.createElement("p");
+        const divinfo = document.createElement("div");
+        nombre.classList.add("title");
         nombre.textContent = pais.name;
-        poblacion.textContent = pais.population;
-        region.textContent = pais.region;
-        capital.textContent = pais.capital;
+        poblacion.innerHTML = `<strong>Population: </strong>${pais.population}`;
+        region.innerHTML = `<strong>Region: </strong>${pais.region}`;
+        capital.innerHTML = `<strong>Population: </strong>${pais.capital}`;
         bandera.src = pais.flags.png;
+        divinfo.classList.add("info");
         div.classList.add("card");
         div.appendChild(bandera);
-        div.appendChild(nombre);
-        div.appendChild(poblacion);
-        div.appendChild(region);
-        div.appendChild(capital);
+        divinfo.appendChild(nombre);
+        divinfo.appendChild(poblacion);
+        divinfo.appendChild(region);
+        divinfo.appendChild(capital);
+        div.appendChild(divinfo);
         container.appendChild(div);
     });
 }

@@ -124,3 +124,9 @@ footer {
         padding-inline: 1rem;
     }
 }
+
+.title {
+    font-weight: bold;
+    font-size: 20px;
+    padding-block: 1rem;
+}
