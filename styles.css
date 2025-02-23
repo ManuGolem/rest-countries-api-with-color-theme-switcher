@@ -140,6 +140,24 @@ footer {
     }
 }
 
+#filter {
+    border: none;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 8px;
+    background-color: white;
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    svg {
+        stroke: var(--LightModeInput);
+    }
+}
+
 .darkMode {
     background-color: var(--DarkModeBg);
     color: var(--white);
@@ -156,9 +174,19 @@ footer {
         }
     }
 
+    #filter {
+        background-color: var(--darkModeElements);
+        color: white;
+
+        svg {
+            stroke: white;
+        }
+    }
+
     header {
         background-color: var(--darkModeElements);
         box-shadow: none;
+        border-radius: 8px;
 
         button {
             color: var(--white);
