@@ -2,9 +2,14 @@ const toggleDark = document.querySelector("#toggle-dark");
 const textoBoton = toggleDark.querySelector("span");
 const body = document.querySelector("body");
 const container = document.querySelector(".container-banderas");
+const botonFilter = document.querySelector("#filter");
+let girado = false;
 document.addEventListener("DOMContentLoaded", () => {
     actualizarMode();
     traerDatos();
+    botonFilter.addEventListener("click", () => {
+        abrirModal();
+    });
     toggleDark.addEventListener("click", () => {
         body.classList.toggle("darkMode");
         if (body.classList.contains("darkMode")) {
@@ -14,6 +19,12 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
+function abrirModal() {
+    const imagen = botonFilter.querySelector("svg");
+    girado
+        ? ((girado = false), imagen.setAttribute("transform", "rotate(0)"))
+        : ((girado = true), imagen.setAttribute("transform", "rotate(90)"));
+}
 async function traerDatos() {
     const datos = await fetch("data.json").then((res) => res.json());
     console.log(datos);

@@ -118,6 +118,7 @@ footer {
     justify-content: space-between;
     padding-inline: 5rem;
     padding-top: 2rem;
+    position: relative;
 }
 
 .search {
@@ -158,6 +159,12 @@ footer {
     }
 }
 
+.modal {
+    position: absolute;
+    background-color: var(--LightModeBg);
+}
+
+/*Modo Oscuro*/
 .darkMode {
     background-color: var(--DarkModeBg);
     color: var(--white);
