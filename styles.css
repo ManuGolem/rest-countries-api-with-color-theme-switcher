@@ -74,24 +74,6 @@ footer {
     }
 }
 
-.darkMode {
-    background-color: var(--DarkModeBg);
-    color: var(--white);
-
-    header {
-        background-color: var(--darkModeElements);
-        box-shadow: none;
-
-        button {
-            color: var(--white);
-        }
-    }
-
-    .card {
-        background-color: var(--darkModeElements);
-    }
-}
-
 .container-banderas {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -129,4 +111,61 @@ footer {
     font-weight: bold;
     font-size: 20px;
     padding-block: 1rem;
+}
+
+.filters {
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 5rem;
+    padding-top: 2rem;
+}
+
+.search {
+    border-radius: 8px;
+    background-color: white;
+    padding: 1rem;
+    display: flex;
+    gap: 8px;
+
+    svg {
+        stroke: var(--LightModeText);
+    }
+
+    input {
+        outline: none;
+        border: none;
+        background-color: white;
+
+        color: inherit;
+    }
+}
+
+.darkMode {
+    background-color: var(--DarkModeBg);
+    color: var(--white);
+
+    .search {
+        background-color: var(--darkModeElements);
+
+        input {
+            background-color: var(--darkModeElements);
+        }
+
+        svg {
+            stroke: white;
+        }
+    }
+
+    header {
+        background-color: var(--darkModeElements);
+        box-shadow: none;
+
+        button {
+            color: var(--white);
+        }
+    }
+
+    .card {
+        background-color: var(--darkModeElements);
+    }
 }
