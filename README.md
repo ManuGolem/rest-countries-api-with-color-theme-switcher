@@ -41,9 +41,9 @@ Users should be able to:
 ### Built with
 
 - HTML5
+- CSS Grid
 - CSS custom properties
 - Flexbox
-- CSS Grid
 - JS vanilla
 
 ## Author
