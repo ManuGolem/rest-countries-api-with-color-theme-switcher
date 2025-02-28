@@ -5,6 +5,7 @@ const container = document.querySelector(".container-banderas");
 const botonFilter = document.querySelector("#filter");
 const modal = document.querySelector(".modal");
 const botonesModal = modal.querySelectorAll("button");
+const input = document.querySelector("input");
 let girado = false;
 document.addEventListener("DOMContentLoaded", () => {
     actualizarMode();
@@ -12,7 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
     botonFilter.addEventListener("click", () => {
         abrirModal();
     });
-
+    input.addEventListener("input", (e) => {
+        traerDatos(filtrarDatosNombre, e.target.value);
+    });
     botonesModal.forEach((boton) => {
         boton.addEventListener("click", () => {
             abrirModal();
@@ -39,11 +42,11 @@ function abrirModal() {
           imagen.setAttribute("transform", "rotate(90)"),
           (modal.style.display = "flex"));
 }
-function traerDatos(funcion, region) {
+function traerDatos(funcion, parametro) {
     fetch("data.json")
         .then((res) => res.json())
         .then((data) => {
-            region ? funcion(region, data) : funcion(data);
+            funcion(data, parametro);
         });
 }
 function actualizarMode() {
@@ -87,7 +90,14 @@ function mostarDatos(datos) {
 }
 
 //Esta funcion va a devolver un array con los paises ordenados por region
-function filtrarDatosPorRegion(region, datos) {
+function filtrarDatosPorRegion(datos, region) {
     datos = datos.filter((pais) => pais.region == region);
+    mostarDatos(datos);
+}
+function filtrarDatosNombre(datos, nombre) {
+    datos = datos.filter(
+        (pais) =>
+            pais.name.toUpperCase().split(nombre.toUpperCase()).length != 1,
+    );
     mostarDatos(datos);
 }
