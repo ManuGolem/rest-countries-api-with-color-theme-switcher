@@ -3,12 +3,21 @@ const textoBoton = toggleDark.querySelector("span");
 const body = document.querySelector("body");
 const container = document.querySelector(".container-banderas");
 const botonFilter = document.querySelector("#filter");
+const modal = document.querySelector(".modal");
+const botonesModal = modal.querySelectorAll("button");
 let girado = false;
 document.addEventListener("DOMContentLoaded", () => {
     actualizarMode();
-    traerDatos();
+    traerDatos(mostarDatos);
     botonFilter.addEventListener("click", () => {
         abrirModal();
+    });
+
+    botonesModal.forEach((boton) => {
+        boton.addEventListener("click", () => {
+            abrirModal();
+            traerDatos(filtrarDatosPorRegion, boton.textContent);
+        });
     });
     toggleDark.addEventListener("click", () => {
         body.classList.toggle("darkMode");
@@ -22,12 +31,36 @@ document.addEventListener("DOMContentLoaded", () => {
 function abrirModal() {
     const imagen = botonFilter.querySelector("svg");
     girado
-        ? ((girado = false), imagen.setAttribute("transform", "rotate(0)"))
-        : ((girado = true), imagen.setAttribute("transform", "rotate(90)"));
+        ? ((girado = false),
+          imagen.setAttribute("transform", "rotate(0)"),
+          (modal.style.display = "none"),
+          traerDatos(mostarDatos))
+        : ((girado = true),
+          imagen.setAttribute("transform", "rotate(90)"),
+          (modal.style.display = "flex"));
 }
-async function traerDatos() {
+async function traerDatos(funcion, region) {
     const datos = await fetch("data.json").then((res) => res.json());
-    console.log(datos);
+    if (region) {
+        funcion(region, datos);
+    } else {
+        funcion(datos);
+    }
+}
+function actualizarMode() {
+    const darkMode = window.matchMedia("(prefers-color-scheme:dark)").matches;
+    if (darkMode) {
+        body.classList.toggle("darkMode");
+        textoBoton.textContent = "Light Mode";
+    } else {
+        body.classList.toggle("darkMode");
+        textoBoton.textContent = "Dark Mode";
+    }
+}
+function mostarDatos(datos) {
+    while (container.firstChild) {
+        container.removeChild(container.firstChild);
+    }
     datos.forEach((pais) => {
         const div = document.createElement("div");
         const bandera = document.createElement("img");
@@ -53,13 +86,9 @@ async function traerDatos() {
         container.appendChild(div);
     });
 }
-function actualizarMode() {
-    const darkMode = window.matchMedia("(prefers-color-scheme:dark)").matches;
-    if (darkMode) {
-        body.classList.toggle("darkMode");
-        textoBoton.textContent = "Light Mode";
-    } else {
-        body.classList.toggle("darkMode");
-        textoBoton.textContent = "Dark Mode";
-    }
+
+//Esta funcion va a devolver un array con los paises ordenados por region
+function filtrarDatosPorRegion(region, datos) {
+    datos = datos.filter((pais) => pais.region == region);
+    mostarDatos(datos);
 }
