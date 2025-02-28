@@ -118,7 +118,6 @@ footer {
     justify-content: space-between;
     padding-inline: 5rem;
     padding-top: 2rem;
-    position: relative;
 }
 
 .search {
@@ -161,7 +160,33 @@ footer {
 
 .modal {
     position: absolute;
-    background-color: var(--LightModeBg);
+    background-color: white;
+    top: -1;
+    left: 0;
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    border: none;
+    margin-top: 4px;
+    border-radius: 8px;
+    padding: 10px;
+    gap: 4px;
+
+    button {
+        outline: none;
+        border: none;
+        color: var(--LightModeText);
+        background-color: white;
+
+        &:hover {
+            cursor: pointer;
+            scale: 1.1;
+        }
+    }
+}
+
+.filter-modal {
+    position: relative;
 }
 
 /*Modo Oscuro*/
@@ -202,5 +227,14 @@ footer {
 
     .card {
         background-color: var(--darkModeElements);
+    }
+
+    .modal {
+        background-color: var(--darkModeElements);
+
+        button {
+            color: white;
+            background-color: var(--darkModeElements);
+        }
     }
 }
