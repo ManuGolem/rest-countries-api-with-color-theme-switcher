@@ -39,13 +39,12 @@ function abrirModal() {
           imagen.setAttribute("transform", "rotate(90)"),
           (modal.style.display = "flex"));
 }
-async function traerDatos(funcion, region) {
-    const datos = await fetch("data.json").then((res) => res.json());
-    if (region) {
-        funcion(region, datos);
-    } else {
-        funcion(datos);
-    }
+function traerDatos(funcion, region) {
+    fetch("data.json")
+        .then((res) => res.json())
+        .then((data) => {
+            region ? funcion(region, data) : funcion(data);
+        });
 }
 function actualizarMode() {
     const darkMode = window.matchMedia("(prefers-color-scheme:dark)").matches;
