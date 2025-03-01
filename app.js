@@ -35,12 +35,12 @@ function abrirModal() {
     const imagen = botonFilter.querySelector("svg");
     girado
         ? ((girado = false),
-          imagen.setAttribute("transform", "rotate(0)"),
-          (modal.style.display = "none"),
-          traerDatos(mostarDatos))
+            imagen.setAttribute("transform", "rotate(0)"),
+            (modal.style.display = "none"),
+            traerDatos(mostarDatos))
         : ((girado = true),
-          imagen.setAttribute("transform", "rotate(90)"),
-          (modal.style.display = "flex"));
+            imagen.setAttribute("transform", "rotate(90)"),
+            (modal.style.display = "flex"));
 }
 function traerDatos(funcion, parametro) {
     fetch("data.json")
@@ -86,6 +86,11 @@ function mostarDatos(datos) {
         divinfo.appendChild(capital);
         div.appendChild(divinfo);
         container.appendChild(div);
+
+        //Agregar evento al card
+        div.addEventListener("click", () => {
+            mostrarPais(pais);
+        });
     });
 }
 
@@ -100,4 +105,90 @@ function filtrarDatosNombre(datos, nombre) {
             pais.name.toUpperCase().split(nombre.toUpperCase()).length != 1,
     );
     mostarDatos(datos);
+}
+function mostrarPais(pais) {
+    const {
+        name,
+        population,
+        nativeName,
+        region,
+        capital,
+        subregion,
+        currencies,
+        languages,
+        topLevelDomain,
+        borders,
+        flags,
+    } = pais;
+    const imagen = document.createElement("img");
+    imagen.src = flags.png;
+    const botonvolver = document.createElement("button");
+    botonvolver.classList.add("botonvolver");
+    botonvolver.addEventListener("click", () => {
+        location.reload();
+    });
+    botonvolver.textContent = "Back";
+    //agregar flecha svg al boton
+    const nametitle = document.createElement("h1");
+    nametitle.textContent = name;
+    const nn = document.createElement("p");
+    nn.innerHTML = `<strong>Native Name: </strong>${nativeName}`;
+    const pp = document.createElement("p");
+    pp.innerHTML = `<strong>Population: </strong>${population}`;
+    const rg = document.createElement("p");
+    rg.innerHTML = `<strong>Region: </strong>${region}`;
+    const sr = document.createElement("p");
+    sr.innerHTML = `<strong>Subregion: </strong>${subregion}`;
+    const cp = document.createElement("p");
+    cp.innerHTML = `<strong>Capital: </strong>${capital}`;
+    const tld = document.createElement("p");
+    tld.innerHTML = `<strong>Top Level Domain: </strong>${topLevelDomain[0]}`;
+    const crr = document.createElement("p");
+    crr.innerHTML = `<strong>Currencies: </strong>${currencies[0].name}`;
+    const lgg = document.createElement("p");
+    lgg.innerHTML = `<strong>Languages: </strong>${languages.map((idioma) => idioma.name).join(", ")}`;
+    const bc = document.createElement("p");
+    const divParrafo = document.createElement("div");
+    borders &&
+        ((bc.textContent = "Border Countries: "),
+            bc.classList.add("border"),
+            borders.forEach((borde) => {
+                const boton = document.createElement("button");
+                boton.classList.add("botonBorde");
+                boton.addEventListener("click", () => {
+                    //Aca hacer llamada rara
+                });
+                boton.textContent = borde; //Esto es momentaneo no funciona asi
+                divParrafo.appendChild(boton);
+            }),
+            bc.appendChild(divParrafo));
+    const infoLeft = document.createElement("div");
+    infoLeft.appendChild(nn);
+    infoLeft.appendChild(pp);
+    infoLeft.appendChild(rg);
+    infoLeft.appendChild(sr);
+    infoLeft.appendChild(cp);
+    const infoRight = document.createElement("div");
+    infoRight.appendChild(tld);
+    infoRight.appendChild(crr);
+    infoRight.appendChild(lgg);
+    const info = document.createElement("section");
+    info.appendChild(infoLeft);
+    info.appendChild(infoRight);
+    info.classList.add("informacion");
+    const infoResume = document.createElement("div");
+    infoResume.appendChild(nametitle);
+    infoResume.appendChild(info);
+    infoResume.appendChild(bc);
+    infoResume.classList.add("infoResume");
+    const sectionPais = document.createElement("section");
+    sectionPais.classList.add("sectionPais");
+    const main = document.querySelector("main");
+    while (main.firstChild) {
+        main.removeChild(main.firstChild);
+    }
+    sectionPais.appendChild(imagen);
+    sectionPais.appendChild(infoResume);
+    main.appendChild(botonvolver);
+    main.appendChild(sectionPais);
 }
