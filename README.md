@@ -5,15 +5,17 @@ This is a solution to the [REST Countries API with color theme switcher challeng
 ## Table of contents
 
 - [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
+    - [The challenge](#the-challenge)
+    - [Screenshot](#screenshot)
+    - [Links](#links)
 - [My process](#my-process)
-  - [Built with](#built-with)
+    - [Built with](#built-with)
 - [Author](#author)
+
 ## Overview
 
 ### The challenge
+
 Users should be able to:
 
 - See all countries from the API on the homepage
@@ -27,14 +29,15 @@ Users should be able to:
 
 - Desktop :
 
-![Img desktop] In progress
+![Img desktop] (./images/rest-apiDesktop.png)
 
 - Mobile:
 
-![Img Mobile] In progress
+![Img Mobile] (./images/rest-apiMobile.png)
+
 ### Links
 
-- Live Site URL: In progress
+- Live Site URL: (https://manugolem.github.io/rest-countries-api-with-color-theme-switcher/)
 
 ## My process
 
