@@ -86,7 +86,6 @@ main {
         }
     }
 }
-
 .botonvolver {
     padding-inline: 2rem;
     padding-block: 1rem;
@@ -95,19 +94,22 @@ main {
     color: var(LightModeText);
     background-color: white;
     border-radius: 8px;
-    margin: 3rem;
+    margin-block: 3rem;
+    max-width: 150px;
 
     &:hover {
         scale: 1.1;
         cursor: pointer;
     }
 }
+.main{
+    display: flex;
+    justify-content: center;
+}
 
 .sectionPais {
     display: flex;
-
-    margin-inline: 3rem;
-    gap: 5rem;
+    gap: 10rem;
     align-items: center;
 
     img {
@@ -132,7 +134,7 @@ main {
 
     section {
         display: flex;
-        gap: 5rem;
+        gap: 10rem;
     }
 }
 

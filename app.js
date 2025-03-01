@@ -184,11 +184,16 @@ function mostrarPais(pais) {
     const sectionPais = document.createElement("section");
     sectionPais.classList.add("sectionPais");
     const main = document.querySelector("main");
+    main.classList.add("main")
     while (main.firstChild) {
         main.removeChild(main.firstChild);
     }
+    const sectionPage=document.createElement("section");
+    sectionPage.appendChild(botonvolver)
+    sectionPage.appendChild(sectionPais)
+    sectionPage.classList.add("sectionPage")
     sectionPais.appendChild(imagen);
     sectionPais.appendChild(infoResume);
-    main.appendChild(botonvolver);
-    main.appendChild(sectionPais);
+    
+    main.appendChild(sectionPage);
 }
