@@ -86,6 +86,7 @@ main {
         }
     }
 }
+
 .botonvolver {
     padding-inline: 2rem;
     padding-block: 1rem;
@@ -102,7 +103,8 @@ main {
         cursor: pointer;
     }
 }
-.main{
+
+.main {
     display: flex;
     justify-content: center;
 }
@@ -334,6 +336,86 @@ footer {
                 color: white;
                 background-color: var(--darkModeElements);
             }
+        }
+    }
+}
+
+@media (width <=400px) {
+    p {
+        font-size: 14px;
+    }
+
+    .filters {
+        display: block;
+        padding-inline: 2rem;
+
+        .search {
+            margin-bottom: 1rem;
+        }
+
+        .modal {
+            width: 49%;
+        }
+    }
+
+    .container-banderas {
+        grid-template-columns: 1fr;
+        padding-inline: 2rem;
+
+        .card {
+            width: 100%;
+        }
+    }
+
+    .main {
+        display: block;
+
+        img {
+            width: auto;
+            height: auto;
+        }
+    }
+
+    .botonvolver {
+        margin-block: 1rem;
+        padding-block: 0.5rem;
+    }
+
+    .sectionPage {
+        padding-inline: 2rem;
+
+        .sectionPais {
+            display: block;
+
+            .infoResume {
+                gap: 1rem;
+            }
+
+            .informacion {
+                display: block;
+
+                div {
+                    margin-bottom: 1rem;
+                }
+            }
+
+            .border {
+                display: block;
+
+                button {
+                    margin-top: 1rem;
+
+                    padding-inline: 4px;
+                }
+            }
+        }
+    }
+
+    header {
+        padding-inline: 1rem;
+
+        h1 {
+            font-size: 20px;
         }
     }
 }
