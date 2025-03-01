@@ -37,7 +37,7 @@ Users should be able to:
 
 ### Links
 
-- Live Site URL: (https://manugolem.github.io/rest-countries-api-with-color-theme-switcher/)
+- Live Site URL:[Rest-api-countries](https://manugolem.github.io/rest-countries-api-with-color-theme-switcher/)
 
 ## My process
 
