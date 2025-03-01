@@ -29,11 +29,11 @@ Users should be able to:
 
 - Desktop :
 
-![Img desktop] (images/rest-apiDesktop.png)
+![Img desktop](images/rest-apiDesktop.png)
 
 - Mobile:
 
-![Img Mobile] (images/rest-apiMobile.png)
+![Img Mobile](images/rest-apiMobile.png)
 
 ### Links
 
