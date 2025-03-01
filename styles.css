@@ -272,10 +272,27 @@ footer {
     position: relative;
 }
 
+.botonvolver {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 16px;
+
+    svg {
+        stroke: black;
+    }
+}
+
 /*Modo Oscuro*/
 .darkMode {
     background-color: var(--DarkModeBg);
     color: var(--white);
+
+    .botonvolver {
+        svg {
+            stroke: white;
+        }
+    }
 
     .search {
         background-color: var(--darkModeElements);

@@ -7,6 +7,8 @@ const modal = document.querySelector(".modal");
 const botonesModal = modal.querySelectorAll("button");
 const input = document.querySelector("input");
 let girado = false;
+let paises;
+let first = true;
 document.addEventListener("DOMContentLoaded", () => {
     actualizarMode();
     traerDatos(mostarDatos);
@@ -35,12 +37,12 @@ function abrirModal() {
     const imagen = botonFilter.querySelector("svg");
     girado
         ? ((girado = false),
-            imagen.setAttribute("transform", "rotate(0)"),
-            (modal.style.display = "none"),
-            traerDatos(mostarDatos))
+          imagen.setAttribute("transform", "rotate(0)"),
+          (modal.style.display = "none"),
+          traerDatos(mostarDatos))
         : ((girado = true),
-            imagen.setAttribute("transform", "rotate(90)"),
-            (modal.style.display = "flex"));
+          imagen.setAttribute("transform", "rotate(90)"),
+          (modal.style.display = "flex"));
 }
 function traerDatos(funcion, parametro) {
     fetch("data.json")
@@ -60,6 +62,7 @@ function actualizarMode() {
     }
 }
 function mostarDatos(datos) {
+    first && ((paises = datos), (first = false));
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     }
@@ -127,7 +130,8 @@ function mostrarPais(pais) {
     botonvolver.addEventListener("click", () => {
         location.reload();
     });
-    botonvolver.textContent = "Back";
+
+    botonvolver.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg> Back`;
     //agregar flecha svg al boton
     const nametitle = document.createElement("h1");
     nametitle.textContent = name;
@@ -151,17 +155,17 @@ function mostrarPais(pais) {
     const divParrafo = document.createElement("div");
     borders &&
         ((bc.textContent = "Border Countries: "),
-            bc.classList.add("border"),
-            borders.forEach((borde) => {
-                const boton = document.createElement("button");
-                boton.classList.add("botonBorde");
-                boton.addEventListener("click", () => {
-                    //Aca hacer llamada rara
-                });
-                boton.textContent = borde; //Esto es momentaneo no funciona asi
-                divParrafo.appendChild(boton);
-            }),
-            bc.appendChild(divParrafo));
+        bc.classList.add("border"),
+        borders.forEach((borde) => {
+            const boton = document.createElement("button");
+            boton.classList.add("botonBorde");
+            boton.addEventListener("click", () => {
+                mostrarPais(devolverPaisAplha3(borde)[0]);
+            });
+            boton.textContent = devolverPaisAplha3(borde)[0].name;
+            divParrafo.appendChild(boton);
+        }),
+        bc.appendChild(divParrafo));
     const infoLeft = document.createElement("div");
     infoLeft.appendChild(nn);
     infoLeft.appendChild(pp);
@@ -184,16 +188,20 @@ function mostrarPais(pais) {
     const sectionPais = document.createElement("section");
     sectionPais.classList.add("sectionPais");
     const main = document.querySelector("main");
-    main.classList.add("main")
+    main.classList.add("main");
     while (main.firstChild) {
         main.removeChild(main.firstChild);
     }
-    const sectionPage=document.createElement("section");
-    sectionPage.appendChild(botonvolver)
-    sectionPage.appendChild(sectionPais)
-    sectionPage.classList.add("sectionPage")
+    const sectionPage = document.createElement("section");
+    sectionPage.appendChild(botonvolver);
+    sectionPage.appendChild(sectionPais);
+    sectionPage.classList.add("sectionPage");
     sectionPais.appendChild(imagen);
     sectionPais.appendChild(infoResume);
-    
+
     main.appendChild(sectionPage);
+}
+
+function devolverPaisAplha3(codigo) {
+    return paises.filter((pais) => pais.alpha3Code === codigo);
 }
